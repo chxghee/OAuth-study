@@ -1,6 +1,7 @@
 package com.example.OAuth2Jwt.config;
 
-import com.example.OAuth2Jwt.auth.CustomOAuthSuccessHandler;
+import com.example.OAuth2Jwt.auth.presentation.CustomOAuthFailureHandler;
+import com.example.OAuth2Jwt.auth.presentation.CustomOAuthSuccessHandler;
 import com.example.OAuth2Jwt.auth.JwtFilter;
 import com.example.OAuth2Jwt.auth.JwtTokenProvider;
 import com.example.OAuth2Jwt.auth.application.CustomOAuth2UserService;
@@ -30,6 +31,7 @@ public class SecurityConfig {
 
     private final CustomOAuth2UserService customOAuth2UserService;
     private final CustomOAuthSuccessHandler customOAuthSuccessHandler;
+    private final CustomOAuthFailureHandler customOAuthFailureHandler;
     private final JwtTokenProvider jwtTokenProvider;
     private final ObjectMapper objectMapper;
 
@@ -52,11 +54,12 @@ public class SecurityConfig {
                         .userInfoEndpoint(userInfoEndpointConfig ->
                                 userInfoEndpointConfig.userService(customOAuth2UserService))
                         .successHandler(customOAuthSuccessHandler)
+                        .failureHandler(customOAuthFailureHandler)
                 )
 
                 // 경로별 인가
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/").permitAll()
+                        .requestMatchers("/", "/reissue/**", "/oauth2/**", "/login/**", "/member/logout").permitAll()
                         .anyRequest().authenticated()
                 )
 

@@ -10,7 +10,7 @@ public record MemberAuthInfo(
         String nickname,
         Role role
 ) {
-    public static MemberAuthInfo fromOAuth2UserInfo(Member member) {
+    public static MemberAuthInfo from(Member member) {
         return new MemberAuthInfo(
                 member.getId(),
                 member.getEmail(),

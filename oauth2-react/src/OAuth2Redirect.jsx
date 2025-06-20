@@ -5,8 +5,10 @@ function OAuth2Redirect() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log("리다이렉트 페이지 진입");
+
     // 리디렉트된 후, 백엔드에 accessToken 요청
-    fetch("http://localhost:8080/auth/token", {
+    fetch("http://localhost:8080/reissue", {
       method: "GET",
       credentials: "include", // ✅ 쿠키 포함 필수
     })
