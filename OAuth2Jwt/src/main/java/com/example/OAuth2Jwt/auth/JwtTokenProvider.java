@@ -43,6 +43,16 @@ public class JwtTokenProvider {
                 .compact();
     }
 
+    public String createRefreshToken(Long memberId) {
+        return Jwts.builder()
+                .claim("id", String.valueOf(memberId))
+                .claim("category", "refresh")
+                .issuedAt(new Date(System.currentTimeMillis()))
+                .expiration(new Date(System.currentTimeMillis() + REFRESH_TOKEN_EXPIRE_TIME))
+                .signWith(secretKey)
+                .compact();
+    }
+
     // 억세스 토큰에서 유저 정보 가져옴
     public Authentication getAuthentication(String bearerToken) {
 
@@ -62,7 +72,7 @@ public class JwtTokenProvider {
         );
     }
 
-    private Claims getClaims(String token) {
+    public Claims getClaims(String token) {
         return Jwts.parser()
                 .verifyWith(secretKey)
                 .build()

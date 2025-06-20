@@ -31,8 +31,11 @@ public class JwtFilter extends OncePerRequestFilter {
     private final ObjectMapper objectMapper;
     private static final AntPathMatcher pathMatcher = new AntPathMatcher();
     private static final Map<String, List<String>> WHITE_LIST = Map.of(
-            "/oauth2/**", List.of("*"),
-            "/login/**", List.of("*")
+            "/oauth2/**", List.of("GET"),
+            "/login/**", List.of("POST", "GET"),
+            "/", List.of("GET"),
+            "/member/logout/**", List.of("POST"),
+            "/reissue", List.of("GET")
     );
 
     // OAuth2 필터가 Jwt필터보다 뒤에 위치하므로 필터를 지나갈 경로들을 허용해줘야함

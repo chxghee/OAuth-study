@@ -36,7 +36,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         OAuth2UserInfoCommand userInfo = getUserInfo(oAuth2User, registrationId);
 
         Member member = upsertMember(userInfo);
-        MemberAuthInfo memberAuthInfo = MemberAuthInfo.fromOAuth2UserInfo(member);
+        MemberAuthInfo memberAuthInfo = MemberAuthInfo.from(member);
 
         return new CustomOAuth2User(memberAuthInfo);
     }

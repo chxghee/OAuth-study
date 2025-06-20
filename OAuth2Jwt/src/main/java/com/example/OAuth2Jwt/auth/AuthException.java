@@ -18,7 +18,7 @@ public enum AuthException implements ExceptionCode {
     TOKEN_UNSUPPORTED("지원하지 않는 JWT 토큰", HttpStatus.UNAUTHORIZED, "지원하지 않는 JWT 토큰입니다."),
 
     REFRESH_TOKEN_COOKIE_NOT_FOUND("리프레시 토큰 없음", HttpStatus.UNAUTHORIZED, "리프레시 토큰이 쿠키에 존재하지 않습니다."),
-    REFRESH_TOKEN_INVALID("억세스 토큰 인증 실패", HttpStatus.UNAUTHORIZED, "억세스 토큰이 유효하지 않습니다."),
+    REFRESH_TOKEN_INVALID("억세스 토큰 인증 실패", HttpStatus.UNAUTHORIZED, "리프레시 토큰이 유효하지 않습니다."),
     REFRESH_TOKEN_EXPIRED("리프레시 토큰 만료", HttpStatus.UNAUTHORIZED, "리프레시 토큰이 만료되었습니다."),
     REFRESH_TOKEN_ILLEGAL("리프레시 토큰 형식 오류", HttpStatus.BAD_REQUEST, "리프레시 토큰이 비어있거나 형식이 잘못되었습니다."),
 
