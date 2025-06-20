@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import OAuth2Redirect from "./OAuth2Redirect";
 import Login from "./Login"; // 👈 Login.jsx 추가
 import Home from "./Home"; // 👈 Home.jsx도 따로 분리해서 관리하면 좋음
+import Mypage from "./Mypage";
 
 function App() {
   return (
